@@ -51,10 +51,8 @@ function showInstructions() {
 }
 
 function startExam() {
-    // Enter Fullscreen
     const elem = document.documentElement;
     if (elem.requestFullscreen) { elem.requestFullscreen(); }
-    
     document.getElementById('instruction-section').style.display = 'none';
     document.getElementById('question-section').style.display = 'block';
     timerInterval = setInterval(() => {
@@ -103,24 +101,22 @@ function calculateFinalScore() {
     status.style.color = percent >= 70 ? "#28a745" : "#d9534f";
 }
 
-// SECURITY: TAB SWITCH DETECTION
 document.addEventListener("visibilitychange", function() {
     if (document.hidden && document.getElementById('question-section').style.display === 'block') {
         violationCount++;
         if (violationCount === 1) {
-            alert("⚠️ WARNING: You left the exam screen. Switching tabs again will terminate your exam!");
+            alert("⚠️ WARNING: You left the exam screen. Next time will terminate your exam!");
         } else if (violationCount >= 2) {
-            alert("❌ EXAM TERMINATED: Too many security violations.");
+            alert("❌ EXAM TERMINATED: Too many violations.");
             calculateFinalScore();
         }
     }
 });
 
-// DISABLE RIGHT CLICK & COPY
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('keydown', e => {
     if (e.ctrlKey && (e.key === 'c' || e.key === 'v' || e.key === 'u' || e.key === 's')) {
         e.preventDefault();
-        alert("Keyboard shortcuts disabled.");
+        alert("Shortcuts disabled.");
     }
 });
