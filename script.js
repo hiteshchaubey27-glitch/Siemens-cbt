@@ -1,5 +1,7 @@
-// --- STUDENT DATABASE (FROM YOUR LIST) ---
+// --- STUDENT DATABASE ---
 const students = [
+    { name: "Deva", pass: "1371" },
+    { name: "Hitesh", pass: "2685" },
     { name: "Saurabh Shivaji Bhoir", pass: "3252" },
     { name: "Soham Mahendra Chaudhari", pass: "3261" },
     { name: "Shreya Sharad Dabhade", pass: "3263" },
@@ -98,7 +100,6 @@ function showInstructions() {
     const enteredPass = document.getElementById('studentPass').value.trim();
     const errorMsg = document.getElementById('login-error');
 
-    // 1. ADMIN RESET
     if (enteredName === "ADMIN" && enteredPass === "0000") {
         localStorage.removeItem("examStatus");
         alert("Admin: Access has been RESET. The student can now log in again.");
@@ -106,22 +107,24 @@ function showInstructions() {
         return;
     }
 
-    // 2. LOCK CHECK
     if (localStorage.getItem("examStatus") === "done") {
         errorMsg.innerText = "❌ You have already submitted. Contact your admin to reset.";
         errorMsg.style.display = 'block';
         return;
     }
 
-    // 3. MULTI-STUDENT LOGIN SEARCH
-    const student = students.find(s => s.name.toLowerCase() === enteredName.toLowerCase() && s.pass === enteredPass);
+    const student = students.find(s => {
+        const firstNameInDB = s.name.split(' ')[0].toLowerCase();
+        const firstEnteredName = enteredName.split(' ')[0].toLowerCase();
+        return firstNameInDB === firstEnteredName && s.pass.trim() === enteredPass;
+    });
 
     if (student) {
         errorMsg.style.display = 'none';
-        currentQuestions = shuffle([...questionBank]);
-        currentQuestions.forEach(q => q.options = shuffle([...q.options]));
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('instruction-section').style.display = 'block';
+        currentQuestions = shuffle([...questionBank]);
+        currentQuestions.forEach(q => q.options = shuffle([...q.options]));
     } else {
         errorMsg.innerText = "❌ Name or TC Number is not correct.";
         errorMsg.style.display = 'block';
