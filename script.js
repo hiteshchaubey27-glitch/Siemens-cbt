@@ -1,3 +1,66 @@
+// --- STUDENT DATABASE (FROM YOUR LIST) ---
+const students = [
+    { name: "Saurabh Shivaji Bhoir", pass: "3252" },
+    { name: "Soham Mahendra Chaudhari", pass: "3261" },
+    { name: "Shreya Sharad Dabhade", pass: "3263" },
+    { name: "Ruchita Pandurang Farde", pass: "3271" },
+    { name: "Mithil Jitendra Gawde", pass: "3274" },
+    { name: "Swapnil Jotiram Jambhale", pass: "3281" },
+    { name: "Sankit Shivprasad Kahar", pass: "3284" },
+    { name: "Adil Dawood Khan", pass: "3288" },
+    { name: "Nayan Shrikant Kondilkar", pass: "3291" },
+    { name: "Parth Gajanan Kondilkar", pass: "3292" },
+    { name: "Yash Ankush Kumawat", pass: "3294" },
+    { name: "Manas Sunil Lad", pass: "3296" },
+    { name: "Sujit Dinesh Magar", pass: "3299" },
+    { name: "Kunal Pundalik Mahajan", pass: "3301" },
+    { name: "Viraj Dhanaji Malik", pass: "3302" },
+    { name: "Tejas Ganpat Padwal", pass: "3311" },
+    { name: "Yadnyesh Prakash Partole", pass: "3313" },
+    { name: "Harsh Ganesh Patil", pass: "3314" },
+    { name: "Jitesh Ganesh Rane", pass: "3320" },
+    { name: "Dimpal Subhash Rasal", pass: "3321" },
+    { name: "Kasturi Kiran Shingate", pass: "3329" },
+    { name: "Daksh Prabhakar Sonawane", pass: "3330" },
+    { name: "Payal Tatya Suryavanshi", pass: "3334" },
+    { name: "Samadhan Sitaram Suryavanshi", pass: "3335" },
+    { name: "Pramita Gautam Vavhal", pass: "3340" },
+    { name: "Bhushan Gurunath Vishe", pass: "3341" },
+    { name: "Om Dinesh Vishe", pass: "3342" },
+    { name: "Shriraj Nitin Wadkar", pass: "3344" },
+    { name: "Ragini Shivnath Jaiswar", pass: "3355" },
+    { name: "Sarthak Dattatray", pass: "3246" },
+    { name: "Paras Bhagwan", pass: "3251" },
+    { name: "Aryan Sameer", pass: "3257" },
+    { name: "Nayan Ashok", pass: "3258" },
+    { name: "Sayali Mahadev", pass: "3276" },
+    { name: "Palak Raghav", pass: "3278" },
+    { name: "Renuka Kailas", pass: "3283" },
+    { name: "Nikhil Pradip", pass: "3285" },
+    { name: "Ved Arun Kawale", pass: "3286" },
+    { name: "Shivani Sharad", pass: "3287" },
+    { name: "Nishant Bharat", pass: "3289" },
+    { name: "Tanmay Mahendra", pass: "3293" },
+    { name: "Raj Ramkrit", pass: "3295" },
+    { name: "Aryan Ganpat", pass: "3303" },
+    { name: "Vighnesh Suryakan", pass: "3306" },
+    { name: "Teju Deepak", pass: "3316" },
+    { name: "Dhiraj Anil", pass: "3317" },
+    { name: "Anagha Hanumat", pass: "3323" },
+    { name: "Indra Arun", pass: "3324" },
+    { name: "Aryan Anil", pass: "3328" },
+    { name: "Sandesh Bapu Sor", pass: "3331" },
+    { name: "Khushali Sainath", pass: "3332" },
+    { name: "Rishabh Santosh", pass: "3333" },
+    { name: "Siddhesh Sopan", pass: "3336" },
+    { name: "Shivam Sachin", pass: "3337" },
+    { name: "Ashish Ganesh", pass: "3343" },
+    { name: "Shravan Wadkar", pass: "3345" },
+    { name: "Yash Sharad", pass: "3348" },
+    { name: "Jayshree Vasant", pass: "3352" },
+    { name: "Purva Panchal", pass: "3356" }
+];
+
 const questionBank = [
     { q: "Two angles are said to be supplementary when their sum is equal to...", options: ["90°", "120°", "180°", "360°"], answer: "180°" },
     { q: "If one supplementary angle is 150°, find the other angle.", options: ["30°", "45°", "10°", "25°"], answer: "30°" },
@@ -31,34 +94,36 @@ let violationCount = 0;
 function shuffle(a) { return a.sort(() => Math.random() - 0.5); }
 
 function showInstructions() {
-    const name = document.getElementById('studentName').value.trim();
-    const pass = document.getElementById('studentPass').value.trim();
+    const enteredName = document.getElementById('studentName').value.trim();
+    const enteredPass = document.getElementById('studentPass').value.trim();
     const errorMsg = document.getElementById('login-error');
 
-    // 1. ADMIN RESET: Page refreshes, student logs in again
-    if (name === "Siemens" && pass === "1234") {
+    // 1. ADMIN RESET
+    if (enteredName === "ADMIN" && enteredPass === "0000") {
         localStorage.removeItem("examStatus");
         alert("Admin: Access has been RESET. The student can now log in again.");
         location.reload(); 
         return;
     }
 
-    // 2. LOCK CHECK: Message for already submitted exams
+    // 2. LOCK CHECK
     if (localStorage.getItem("examStatus") === "done") {
         errorMsg.innerText = "❌ You have already submitted. Contact your admin to reset.";
         errorMsg.style.display = 'block';
         return;
     }
 
-    // 3. STUDENT LOGIN
-    if (name === "Deva" && pass === "1371") {
+    // 3. MULTI-STUDENT LOGIN SEARCH
+    const student = students.find(s => s.name.toLowerCase() === enteredName.toLowerCase() && s.pass === enteredPass);
+
+    if (student) {
         errorMsg.style.display = 'none';
         currentQuestions = shuffle([...questionBank]);
         currentQuestions.forEach(q => q.options = shuffle([...q.options]));
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('instruction-section').style.display = 'block';
     } else {
-        errorMsg.innerText = "❌ Name or Password is not correct.";
+        errorMsg.innerText = "❌ Name or TC Number is not correct.";
         errorMsg.style.display = 'block';
     }
 }
@@ -102,7 +167,7 @@ function prevQuestion() { if (currentQuestionIndex > 0) { currentQuestionIndex--
 
 function calculateFinalScore() {
     clearInterval(timerInterval);
-    localStorage.setItem("examStatus", "done"); // SET LOCK HERE
+    localStorage.setItem("examStatus", "done");
     
     let score = 0;
     currentQuestions.forEach((q, i) => { if (userAnswers[i] === q.answer) score++; });
