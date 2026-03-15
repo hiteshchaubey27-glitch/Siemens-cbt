@@ -1,25 +1,24 @@
-// --- UPDATED LOGIN LOGIC WITH YOUR STATEMENT ---
 function showInstructions() {
     const name = document.getElementById('studentName').value.trim();
     const pass = document.getElementById('studentPass').value.trim();
     const errorMsg = document.getElementById('login-error');
 
-    // 1. Check for SIR'S MASTER RESET (ADMIN LOGIN)
+    // 1. Admin Reset Logic
     if (name === "Siemens" && pass === "1234") {
-        localStorage.removeItem("examStatus"); // Clears the lock
-        alert("Admin: Exam access has been RESET. The student can now log in again.");
+        localStorage.removeItem("examStatus"); 
+        alert("Admin: Access has been RESET.");
         location.reload();
         return;
     }
 
-    // 2. Check if Student is already LOCKED OUT (Your requested statement)
+    // 2. The Updated Message (Check this line carefully)
     if (localStorage.getItem("examStatus") === "done") {
         errorMsg.innerText = "❌ You have already submitted. Contact your admin to reset.";
         errorMsg.style.display = 'block';
         return;
     }
 
-    // 3. Normal Student Login
+    // 3. Login Logic
     if (name === "Deva" && pass === "1371") {
         errorMsg.style.display = 'none';
         currentQuestions = shuffle([...questionBank]);
