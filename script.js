@@ -242,3 +242,26 @@ document.addEventListener('keydown', e => {
         alert("Shortcuts disabled.");
     }
 });
+// --- ENHANCED SECURITY: LOCK COPY, PASTE, CUT ---
+
+// 1. Block Keyboard Shortcuts (Ctrl+C, Ctrl+V, Ctrl+X)
+document.addEventListener('keydown', e => {
+    // Check for Ctrl or Command (Mac) + C, V, or X
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'c' || e.key === 'v' || e.key === 'x' || e.key === 'u' || e.key === 's')) {
+        e.preventDefault();
+        alert("⚠️ Security Alert: Copy, Paste, and Cut are disabled during the exam.");
+    }
+});
+
+// 2. Block Right-Click Menu "Paste/Copy" Actions
+const blockAction = (e) => {
+    e.preventDefault();
+    return false;
+};
+
+document.addEventListener('copy', blockAction);
+document.addEventListener('paste', blockAction);
+document.addEventListener('cut', blockAction);
+
+// 3. Prevent Drag and Drop (Another way to move text)
+document.addEventListener('drop', blockAction);
