@@ -7,7 +7,6 @@ const students = [
     { name: "Hitesh",                      pass: "2685", batch: "61st", division: "EA" },
     { name: "Deva",                        pass: "1371", batch: "61st", division: "EA" },
     { name: "Tejas Ganpat Padwal",         pass: "3311", batch: "61st", division: "EA" },
-    { name: "Tanuja Suresh Shirke",         pass: "3346", batch: "61st", division: "EA" },
     { name: "Bhushan Gurunath Vishe",       pass: "3341", batch: "61st", division: "EA" },
     { name: "Yash Ankush Kumawat",          pass: "3294", batch: "61st", division: "EA" },
     { name: "Yadnyesh Prakash Partole",     pass: "3313", batch: "61st", division: "EA" },
