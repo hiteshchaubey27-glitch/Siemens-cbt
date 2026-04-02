@@ -4,8 +4,12 @@ const students = [
     // ===================== 61st BATCH =====================
 
     // --- 61st EA (Division A) ---
-    { name: "Tejas Ganpat Padwal",         pass: "3311", batch: "61st", division: "EA" },
-    { name: "Hitesh",                      pass: "2685", batch: "61st", division: "EA" },
+    { name: "Tejas Ganpat Padwal",          pass: "3311", batch: "61st", division: "EA" },
+    { name: "Tanuja Walimbe",               pass: "3346", batch: "61st", division: "EA" },
+    { name: "Sankit kahar",                 pass: "3284", batch: "61st", division: "EA" },
+    { name: "Nayan kondilkar",              pass: "3291", batch: "61st", division: "EA" },
+    { name: "Om vishe",                     pass: "3342", batch: "61st", division: "EA" },
+    { name: "Hitesh",                       pass: "2685", batch: "61st", division: "EA" },
     { name: "Deva",                         pass: "1371", batch: "61st", division: "EA" },
     { name: "Tanuja Suresh Shirke",         pass: "3346", batch: "61st", division: "EA" },
     { name: "Bhushan Gurunath Vishe",       pass: "3341", batch: "61st", division: "EA" },
@@ -36,7 +40,8 @@ const students = [
 
     // --- 61st EB (Division B) ---
     { name: "Jayshree Vasant Dongare",      pass: "3352", batch: "61st", division: "EB" },
-     { name: "Hitesh",                      pass: "2685", batch: "61st", division: "EB" },
+    { name: "Shivam Thakur",                pass: "3337", batch: "61st", division: "EB" },
+    { name: "Hitesh",                       pass: "2685", batch: "61st", division: "EB" },
     { name: "Deva",                         pass: "1371", batch: "61st", division: "EB" },
     { name: "Sayali Mahadev Gondhali",      pass: "3276", batch: "61st", division: "EB" },
     { name: "Kartiki Kadam",                pass: "3351", batch: "61st", division: "EB" },
